@@ -1,30 +1,32 @@
-#include <stdio.h>
+#include<stdio.h>
+#include<limits.h>
 
-int main() {
-    int tamanho;
-    scanf("%d", &tamanho);
+int main()
+{
+    int n;
+    scanf("%d", &n);  
 
-    int arr[tamanho];
-    for (int i = 0; i < tamanho; i++) {
-        scanf("%d", &arr[i]);
-    }
+    int vetor[n];
+    int maior = INT_MIN, segundoMaior = INT_MIN;
+    int indiceMaior = 0, indiceSegundoMaior = 0;
 
-    int maior = arr[0], segundoMaior = arr[0];
-    int posicaoMaior = 0, posicaoSegundoMaior = 0;
-
-    for (int i = 1; i < tamanho; i++) {
-        if (arr[i] > maior) {
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &vetor[i]);
+        if (vetor[i] > maior)
+        {
             segundoMaior = maior;
-            posicaoSegundoMaior = posicaoMaior;
-            maior = arr[i];
-            posicaoMaior = i;
-        } else if (arr[i] > segundoMaior && arr[i] != maior) {
-            segundoMaior = arr[i];
-            posicaoSegundoMaior = i;
+            indiceSegundoMaior = indiceMaior;
+            maior = vetor[i];
+            indiceMaior = i;
+        } else if (vetor[i] > segundoMaior && vetor[i] <= maior)
+        {
+            segundoMaior = vetor[i];
+            indiceSegundoMaior = i;
         }
     }
 
-    printf("%d %d\n", posicaoSegundoMaior, segundoMaior);
+    printf("%d %d\n", indiceSegundoMaior, segundoMaior);
 
     return 0;
 }
